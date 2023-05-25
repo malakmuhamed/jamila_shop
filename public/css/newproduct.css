@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;1,100;1,300&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.container.mySlides {
+    width: 40px;
+    height: 40px;
+}
+
+/* .row .demo cursor {
+    width: 20px;
+    height: 40px;
+} */
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+    position: absolute;
+    top: 50px;
+    left: 600px;
+    right: 30px;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+    cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* Container for image text */
+/* .caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+} */
+
+/* .row:after {
+    content: "";
+    display: table;
+    clear: both;
+} */
+
+/* Six columns side by side */
+.column {
+    float: left;
+    width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+    opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+    opacity: 1;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+
+    text-decoration: none;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+
+}
+
+.allinfo {
+    position: absolute;
+    left: 70px;
+    width: 350px;
+    top: 90px;
+
+}
+
+.main {
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+}
+
+.words {
+    overflow: none;
+}
+
+.checked {
+    color: rgb(103, 8, 81);
+}
+
+.unchecked {
+    color: black;
+}
+
+.btn1-group button {
+    background-color: white;
+    /* color: rgb(103, 8, 81); */
+    color: white;
+    width: 350px;
+    height: 50px;
+
+    cursor: pointer;
+    outline: none;
+    border: 1px solid rgb(103, 8, 81);
+}
+
+.btn1-group {
+    font-size: 25px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.btn1-group a {
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(103, 8, 81);
+}
+
+.btn1-group a:hover {
+    color: white;
+}
+
+.btn1-group button:hover {
+    background-color: rgb(103, 8, 81);
+
+}
+
+.btn1-group button:hover a {
+    color: white;
+}
