@@ -27,3 +27,186 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;1,100;1,300&display=swap');
     </style>
 </head>
+<body>
+
+    <%- include('./companents/nav.ejs') %>
+        <!--end of navigation-->
+        <section>
+
+        </section>
+        <section>
+            <div class="container">
+                <video autoplay muted id="video1" class="video1">
+                    <source src="images/vid1.mp4" type="video/mp4">
+                </video>
+
+                <video autoplay muted id="video2" class="video2">
+                    <source src="images/vid2.mp4" type="video/mp4">
+                </video>
+
+                <video autoplay muted id="video3" class="video3">
+                    <source src="images/vid3.mp4" type="video/mp4">
+                </video>
+                <video autoplay muted id="video4" class="video4">
+                    <source src="images/vid4.mp4" type="video/mp4">
+                </video>
+                <div class="text">
+                    <!-- <h1>Jamila</h1> -->
+                    <!-- <p>Lorem ipsum dolor sit amet,lum magnam reprehenderit.</p> -->
+                </div>
+            </div>
+
+
+            <section class="product">
+                <h2 class="product-category" style="font-family: 'EB+Garamond';
+                    color: #7B0137; font-size: 40px;"> bestsellers</h2>
+                <button class="pre-btn"><img src="images/arrow.png"></button>
+                <button class="nxt-btn"><img src="images/arrow.png"></button>
+                <!-- -------------------------------------------------------------------->
+                <div class="product-container">
+                    <% items.forEach(function(image) { %>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <span class="discount-tag">
+                                    <%=image.offer%>% off
+                                </span>
+                                <img src="uploads/0<%= image.img %>" alt="" class="product-thumb">
+                                <button class="card-btn"> Add To Bag</button>
+                            </div>
+                            <div class="product-info">
+                                <!-- <h2 class="product-brand">brand</h2> -->
+                                <p class="product-short-discription">
+                                <h5>
+                                    <%= image.name %>
+                                </h5>
+                                </p>
+                                <span class="price">
+                                    <%= image.price - image.price * image.offer /100%> EGP
+                                </span>
+                                <span class="actual-price">
+                                    <%= image.price %>
+                                </span>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                </div>
+
+            </section>
+            <!-- category section -->
+            <section class="home-shop-by bg-peach">
+                <div class="home-shop-by__container container container--medium section-header-wrap">
+                    <header class="section-header">
+                        <i class="section-header__heading home-shop-by__heading"
+                            style="font-family:'EB+Garamond'; color:#7B0137;">Shop by<br>Category</h3>
+                    </header>
+                    <div class="home-shop-by__row desktop-only">
+                        <div class="home-shop-by__col">
+                            <div class="home-shop-by__item home-shop-by__item--1">
+                                <a href="/productcategory/lip" class="home-shop-by__link" title="lip"><img
+                                        src="images/lips.png" style="width:90%;"></a>
+                            </div>
+                        </div>
+                        <div class="home-shop-by__col">
+                            <div class="home-shop-by__item--2">
+                                <a href="/productcategory/eye" class="home-shop-by__link" title="eyes"><img
+                                        src="images/Untitled-1.png" style="width:70%;"></a>
+                            </div>
+                            <div class="home-shop-by__item--3">
+                                <a href="/productcategory/face" class="home-shop-by__link" title="face"><img
+                                        src="images/facepng.png" style="width:50%;"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="home-shade-finder" style="padding-bottom: 5%; padding-top: 10%;width: 95%;">
+                <div class="home-shade-finder__collage">
+                    <div class="home-shade-finder__image-left">
+                        <div class="ir ir--square">
+                            <img class="img"
+                                style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%); width:40%; float: center;"
+                                src="images/hp-hero-6-small-bronzer-shade-ext-488x628_360x.webp">
+                        </div>
+                    </div>
+                </div>
+                <div class="home-shade-finder__scale">
+                    <p class="home-shade-finder__scale-item">light</p>
+                    <p class="home-shade-finder__scale-item">light medium</p>
+                    <p class="home-shade-finder__scale-item">medium</p>
+                    <p class="home-shade-finder__scale-item">medium tan</p>
+                    <p class="home-shade-finder__scale-item">medium deep</p>
+                    <p class="home-shade-finder__scale-item">deep</p>
+                </div>
+                <div class="home-shade-finder__image-shades"></div>
+                </div>
+            </section>
+            <section class="rounded">
+                <div class="home-learn-more__content">
+                </div>
+                <div class="circle circle1">
+                    <img src="images/The Spring Beauty Must-Haves You Need NOW.jfif">
+                </div>
+                <h2>What does Jamila mean?</h2>
+                <p class="prounded" style="font-size: 1.25rem ;">Jamila can be defined as a quality in someone or
+                    something
+                    that
+                    makes it attractive and interesting in our eyes
+                    Real beauty isn't about symmetry or weight or makeup: it's about looking life right in the face and
+                    seeing
+                    all its magnificence reflected in your own
+                    The famous English saying goes, “Beauty lies in the eyes of the beholder .”
+                </p>
+                </div>
+            </section>
+            <section class="footers">
+                <footer>
+                    <div class="content" style="border:none;">
+                        <div class="left box">
+                            <div class="upper">
+                                <div class="topic">About us</div>
+                                <p>jamila's shop is where you feel the most jamila</p>
+                            </div>
+                            <div class="lower">
+                                <div class="topic">Contact us</div>
+                                <div class="phone">
+                                    <a href="#"><i class="fas fa-phone-volume"></i>01119988687</a>
+                                </div>
+                                <div class="email">
+                                    <a href="#"><i class="fas fa-envelope"></i>jamila@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="middle box">
+                            <div class="topic">Our Services</div>
+                            <div><a href="#">Get Help</a></div>
+                            <div><a href="#">Shipping</a></div>
+                            <div><a href="#">Returns</a></div>
+                            <div><a href="#">order Status</a></div>
+                            <div><a href="#">payment options</a></div>
+                        </div>
+                        <div class="right box">
+                            <div class="topic">Subscribe us</div>
+                            <form action="#">
+                                <input type="text" placeholder="Enter email address">
+                                <input type="submit" name="" value="Send">
+                                <div class="media-icons">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div style="color: black;">
+                    </div>
+                </footer>
+            </section>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script src="js/index.js"></script>
+            <script src="js/slider.js"></script>
+            <script type="text/javascript" src="slider.js"></script>
+</body>
+</html>
