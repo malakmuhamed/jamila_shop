@@ -40,3 +40,52 @@
 
 
             </div>
+            <div class="box-container">
+                <% items.forEach(function(image) { %>
+                    <div class="box">
+                        <div class="container">
+                            <div class="img">
+                                <img src="/uploads/0<%= image.img %>" class="image">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <a href="/product_details/<%= image.id %>">
+                                            <img src="/uploads/1<%= image.img %>">
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="content">
+                            <h3>
+                                <%= image.name %>
+                            </h3>
+                            <div style="margin:10px ;padding:10px" class="main">
+                                <i class="fa fa-star checked" id="one"></i>
+                                <i class="fa fa-star unchecked" id="two"></i>
+                                <i class="fa fa-star unchecked" id="three"></i>
+                                <i class="fa fa-star unchecked" id="four"></i>
+                                <i class="fa fa-star unchecked" id="five"></i>
+                            </div>
+                            <!-- <div class="pitce">$40 <span>$200.99</span></div> -->
+                            <!-- <a href="#" class="btn">add to cart</a> -->
+                            <div class="btn1-group">
+                                <button><a href="#"> A d d t o B A G .<%= image.price %></a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
