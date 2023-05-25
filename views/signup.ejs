@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> sign up Form Validations</title>
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/navsign.css">
+<body>
+    <section>
+        <%- include('./companents/nav.ejs') %>
+    </section>
+    <section>
+        <div class="showcase">
+            <div class="video-container">
+                <video src="images/signinvid.mp4" autoplay muted loop id="myvideo"
+                    style="background-size: cover;"></video>
+            </div>
+        </div>
+        <div class="signup-box">
+            <h2>Login</h2>
+            <div style="clear: both;font-size: large;color: white;"><%= token %></div>
+            <form>
+                <div class="user-box success">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <input type="text" id="FullName" name="FullName" required="">
+                    <label>First name</label>
+                    <small id="FullNameError"></small>
+                    <!-- ------------------------- ------------ -->
+                </div>
+                <div class="user-box success">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <input type="email" id="email" name="email" required="">
+                    <label>Email</label>
+                    <small id="EmailError"></small>
+                </div>
