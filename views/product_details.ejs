@@ -190,3 +190,91 @@
     background-color: #fdf6f0;
   }
 </style>
+<body>
+  <div class="allinfo">
+    <br>
+    <h1>
+      <%= items.name %>
+    </h1>
+    <div style="margin:10px ;padding:10px" class="main">
+      <i class="fa fa-star checked" id="one"></i>
+      <i class="fa fa-star checked" id="two"></i>
+      <i class="fa fa-star checked" id="three"></i>
+      <i class="fa fa-star unchecked" id="four"></i>
+      <i class="fa fa-star unchecked" id="five"></i>
+    </div>
+    <div class="words">
+      <h4>DESCRIPTION:</h4>
+      <%= items.desc %>
+    </div>
+    <br>
+    Quantity: <input type="number" id="quantity" name="quantity" min="1" max="5" value="1">
+    <br>
+    <br>
+    <div class="btn1-group">
+      <button><a href="#"> ADD TO BAG .<%= items.price %> EGP</a></button>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <% for(i=0 ; i < items.num ; i++ ){ %>
+      <div class="mySlides">
+        <div class="numbertext">
+          <%= i+1 %> / <%= items.num %>
+        </div>
+        <img src="/uploads/<%= i %><%= items.img %>" style="width:100%;height: 600px;">
+      </div>
+      <% } %>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="caption-container">
+          <p id="caption"></p>
+        </div>
+
+        <div class="row">
+          <% for(i=0 ; i < items.num ; i++ ){ %>
+            <div class="column">
+              <img class="demo cursor" src="/uploads/<%= i %><%= items.img %>" style="width:100%;height: 100px;"
+                onclick="currentSlide('<%= i+1 %>')">
+            </div>
+            <% } %>
+        </div>
+  </div>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("demo");
+      let captionText = document.getElementById("caption");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+      captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+  </script>
+
+</body>
+
+</html>
