@@ -1,0 +1,106 @@
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+section {
+    display: block;
+}
+.home-shade-finder__collage {
+    margin: -1.125rem 0 2.0625rem;
+  
+}
+.home-shade-finder__collage {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    
+    margin: 1.875rem -2.625rem 1.75rem;
+}
+
+/* //hya de l bzbt beha size */
+.home-shade-finder__image-left {
+    width: 60%;
+}
+.home-shade-finder__image-left {
+    width: 55%;
+    z-index: 0;
+}
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+
+
+img {
+    border-style: none;
+    max-width: 100%;
+}
+
+.home-shade-finder__scale {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0 -0.625rem 1.0625rem;
+}
+.home-shade-finder__scale-item {
+    font-family: Neue Hass Unica Bold;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: .5rem;
+    line-height: .75rem;
+    letter-spacing: .125rem;
+    font-weight: 500;
+    margin: 0;
+    max-width: 3.125rem;
+}
+.home-shade-finder__image-shades {
+    background-image: -webkit-gradient(linear,left top,right top,from(#ffdcc6),color-stop(#ebb288),color-stop(#e5955b),color-stop(#c86128),to(#732a18));
+    background-image: linear-gradient(to right,#ffdcc6,#ebb288,#e5955b,#c86128,#732a18);
+    height: 0.625rem;
+}
+.home-shade-finder__image-shades {
+    margin: 0 auto;
+    height: 0.75rem;
+    width: 72.45763%;
+}
+
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.home-shade-finder__scale {
+    margin: 0 auto 0.875rem;
+    width: 72.45763%;
+}
+
+.home-shade-finder__scale-item {
+    font-family: Neue Hass Unica Regular;
+    font-size: .5625rem;
+    line-height: .875rem;
+    letter-spacing: .125rem;
+    font-weight: 400;
+    max-width: 4.375rem;
+}
