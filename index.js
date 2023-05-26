@@ -17,3 +17,13 @@ app.use(morgan("common"));
 require("dotenv").config();
 
 app.use(fileUpload());
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+
