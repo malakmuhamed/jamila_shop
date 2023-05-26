@@ -47,3 +47,15 @@ router.get("/addproduct", (req, res) => {
     });
   });
 });
+
+///////////////////////////////////
+
+router.post("/addproduct2", (req, res) => {
+  let imgFile;
+  let uploadPath;
+  if (!req.files) {
+    return res.status(400).send("No files were uploaded.");
+  }
+  imgFile = req.files.img;
+  uploadPath = __dirname + "/public/uploads/" + req.body.name + ".png";
+});
