@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,500&display=swap');
+
+/* ------------- ROOT VARIABLES ------------- */
+:Root{
+--color-primary:#E4B7A0;
+--color-danger:#c9747b;
+--color-success:#A45C40;
+--color-warning:#C38370;
+--color-white:RGB(253 246 240);
+--color-info-dark:#7b0137;
+--color-info-light:#7b0137;
+--color-dark:#7b0137;
+--color-light:rgba(0, 0, 0, 0.18); 
+--color-primary-variant:#1414ef;
+--color-dark-variant:#000000;
+--color-background:#fcf1e0;
+
+--card--border-radius:2rem;
+--border-radius-1:0.4rem;
+--border-radius-2:0.8rem;
+--border-radius-3:1.2rem;
+
+--card-padding:1.8rem;
+--padding-1:1.2rem;
+
+--box-shadow:0 2rem 3rem var(--color-light);
+}          
+
+*{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    box-sizing:none;
+    appearance:none;
+    text-decoration:none;
+    list-style:none;
+
+}
+
+/* ------------- Dark Theme Variables ------------- */
+
+.dark-theme-variables{
+    --color-background:#181a1e;
+    --color-white:#202528;
+    --color-dark:#edeffd;
+    --color-dark-variant:#a3bdcc;
+    --color-light:rgba(0,0,0,0.4);
+    --box-shadow:0 2rem 3rem var(--color-light);
+}
+
+html{
+    font-size:14px;
+}
+
+body{
+    font-size:0.88rem;
+    font-family:poppins,sans-serif;
+    width:100vw;
+    height:100vh;
+    background-color:var(--color-background);
+    overflow-x:hidden;
+    user-select:none;
+}
+
+.container{
+    display:grid;
+    width:96%;
+    margin:0 auto;
+    gap:1.8rem;
+    grid-template-columns:14rem auto 23rem; 
+    
+}
+
+a{
+    color:var(--color-dark);
+}
+
+img{
+   display:block;
+    width:100%;
+}
+
+h1{
+    font-weight:800;
+    font-size:1.8rem;
+    color: #7b0137;
+}
+
+h2{
+    font-size:1.4rem;
+    color: #7b0137;
+}
+
+h3{
+    font-size:0.87rem;
+    color: #7b0137;
+}
+
+h4{
+    font-size:0.8rem;
+    color: #7b0137;
+}
+
+h5{
+    font-size:0.77rem;
+}
