@@ -22,7 +22,12 @@ app.get("/signin", (req, res) => {
     fullname: req.session.fullname === undefined ? "" : req.session.fullname,
   });
 });
-
+app.get("/signup", (req, res) => {
+  res.render("signup", {
+    token: req.session.token === undefined ? "" : req.session.token,
+    fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+  });
+});
 app.get("/product", (req, res) => {
   imgSchema.find({}).then((data, err) => {
     if (err) {
