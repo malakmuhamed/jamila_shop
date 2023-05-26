@@ -1,0 +1,119 @@
+@font-face {
+    font-family: myFont;
+    src: url(GreatVibes-Regular.ttf);
+}
+body{
+  background-color: #fdf6f0;
+}
+.box{
+    float: left;
+    width:33.33%;
+    padding:4px;
+    size-adjust: 20 20;
+}
+/* #roundimage{
+    display:flex;
+align-items: center;
+justify-content:space-between;
+/* padding:20px 80px; */
+
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color:#ab7084;
+  opacity: 0.2;
+}
+
+
+
+/* .container{
+    margin:15px auto;
+ 
+    padding:8px;
+} */
+.image img {
+    border-radius: 50%;
+    height: 700px;
+    float: left;
+    margin-right: 10px;
+  }
+
+.textbox{
+    text-align: justify;
+    color: rgb(18, 17, 17);
+    float: right;
+    
+}
+.textbox p{
+    font-family: myFont;
+    font-size: 64px;
+}
+
+
+
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .column img
+  {
+    max-width: 320px;
+    align-items: center;
+  }
+  .column
+  {
+    background-color:#fdf6f0;
+
+  } */
+  .section-header h3{
+    font-family: myFont;
+    font-size: 48px;
+    line-height:
+53px;
+vertical-align:
+baseline;
+letter-spacing:
+0.5px;
+word-spacing:
+0px;
+margin:
+10px 0px 20px;
+padding:0px;
+font-weight:
+400;
+font-style:
+normal;
+font-variant:
+normal;
+text-transform:
+none;
+text-decoration:
+none solid rgb(0, 9, 20);
+text-align:
+start;
+text-indent:
+0px;
+  }
+ .row{
+    
+    display: grid;
+   grid-auto-flow: column;
+   grid-auto-columns: 30%;
+   gap:var(--size-3);
+
+
+   /* overflow-:auto 
+   overscroll-behavior-inline:contain;*/
+
+  };
+  
+ 
