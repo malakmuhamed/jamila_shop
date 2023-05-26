@@ -22,3 +22,7 @@ app.get("/signin", (req, res) => {
     fullname: req.session.fullname === undefined ? "" : req.session.fullname,
   });
 });
+
+app.get("/product", (req, res) => {
+ 
+});
