@@ -92,7 +92,23 @@ router.post("/addproduct3", (req, res) => {
     imgFile[i].mv(uploadPath, function (err) {
       if (err) return res.status(500).send(err);
     });
-  }
+  }const num = imgFile.length;
+  var obj = {
+    name: req.body.name,
+    category: req.body.category,
+    price: req.body.price,
+    offer:req.body.offer,
+    desc: req.body.desc,
+    img: req.body.name + ".png",
+    num: num,
+  };
+  imgSchema.create(obj).then((err, item) => {
+    if (err) {
+      console.log("");
+    } else {
+    }
+
+  });
 });
 
 
