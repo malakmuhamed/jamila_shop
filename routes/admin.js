@@ -92,7 +92,8 @@ router.post("/addproduct3", (req, res) => {
     imgFile[i].mv(uploadPath, function (err) {
       if (err) return res.status(500).send(err);
     });
-  }const num = imgFile.length;
+  }
+  const num = imgFile.length;
   var obj = {
     name: req.body.name,
     category: req.body.category,
@@ -107,7 +108,7 @@ router.post("/addproduct3", (req, res) => {
       console.log("");
     } else {
     }
-
+    res.redirect("/admin/product");
   });
 });
 
