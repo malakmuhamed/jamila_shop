@@ -24,5 +24,13 @@ app.get("/signin", (req, res) => {
 });
 
 app.get("/product", (req, res) => {
- 
+  imgSchema.find({}).then((data, err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.render("product", {
+      items: data,
+      fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+    });
+  });
 });
