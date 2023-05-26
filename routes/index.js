@@ -52,3 +52,21 @@ router.post("/signin", async (req, res, next) => {
     next(error);
   }
 });
+router.get("/users", verifyAccessToken, async (req, res, next) => {
+  try {
+    const action = await User.find({});
+    res.status(200).json(action);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/user/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const action = await User.find({ username: id });
+    res.status(200).json(action);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
