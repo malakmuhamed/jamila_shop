@@ -111,6 +111,44 @@ router.post("/addproduct3", (req, res) => {
     res.redirect("/admin/product");
   });
 });
+router.get("/", (req, res) => {
+  res.render("admin_dashboard", {
+    token: req.session.token === undefined ? "" : req.session.token,
+    fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+  });
+});
+
+router.get("/customers", (req, res) => {
+  UsersSchema.find({typeofuser:"user"}).then((data, err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.render("admin_customers", {
+      items: data,
+      token: req.session.token === undefined ? "" : req.session.token,
+      fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+    });
+  });
+});
+
+router.get("/admins", (req, res) => {
+  UsersSchema.find({typeofuser:"admin"}).then((data, err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.render("admin_customers", {
+      items: data,
+      token: req.session.token === undefined ? "" : req.session.token,
+      fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+    });
+  });
+});
+
+router.get("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  await UsersSchema.findByIdAndDelete(id);
+  res.redirect("/admin/customers");
+});
 
 
 
