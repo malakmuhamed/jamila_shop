@@ -1,0 +1,128 @@
+/* star selector is used to give styles to all the elements */
+
+
+/* now style navbar element */
+.navbar
+{
+    /* sticky position  so it wil be relative but always stick to top*/
+    position: sticky; 
+    top:0;
+    left:0;
+    width: 100%;
+   position: fixed;
+    background:#fdf6f0;
+    /* z index to highest number so nav will always be on top of other elements*/
+    z-index: 9;
+
+}
+/* designing the container of the nav bar */
+.nav-div
+{
+    padding: 10px 10vw;
+    /* display flex; to make space between logo and search box */
+    display: flex;
+    justify-content: space-between;
+    
+}
+/* designing the logo */
+.brand-logo
+{
+     height: 60px;
+    width: auto; 
+    
+
+}
+.nav-items
+{
+    display: flex;
+    align-items: center;
+
+}
+.search
+{
+    width: 500px;
+    /* display: flex; */
+}
+.search-box
+{
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid #7B0137;
+    text-transform: capitalize;
+    background-color: black;
+    color: #7B0137;
+    outline: none;
+    
+}
+/* using placeholder keyword to style inout's placeholder */
+.search-box::placeholder
+{
+color:#ab7084;
+}
+.search-btn
+{
+    width: 20%;
+    height: 40px;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #7B0137;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 15px;
+    border-top-right-radius:10px ;
+    border-bottom-right-radius:10px ;
+}
+/* lel (a) items  */
+.nav-items a{
+    margin-left: 20px;
+}
+.nav-items img
+{
+    width: 30px;
+}
+.links-container
+{
+
+    width:100%;
+    display: flex;
+    padding: 10px 10vw;
+    justify-content: center;
+    list-style: none;
+    border-top:1px solid #ab7084;
+
+}
+.link
+{
+    text-transform: capitalize;
+    padding: 0 10px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #804f5f;
+    opacity: 0.7;
+    transition: .5s;
+}
+.link:hover
+{
+    opacity: 1;
+}
+.btn {
+    height: 40px;
+    min-width: 240px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+}
+.btn--light {
+    background-color:#804f5f;
+    color:  #fdfafb;
+    opacity: 0.6;
+    align-items: center;
+}
