@@ -86,6 +86,13 @@ router.post("/addproduct3", (req, res) => {
     return res.status(400).send("No files were uploaded.");
   }
   imgFile = req.files.img;
+  for (i = 0; i < imgFile.length; i++) {
+    uploadPath = path.join(__dirname + "/../public/uploads/" + i + req.body.name + ".png");
+    console.log(uploadPath);
+    imgFile[i].mv(uploadPath, function (err) {
+      if (err) return res.status(500).send(err);
+    });
+  }
 });
 
 
