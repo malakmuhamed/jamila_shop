@@ -85,3 +85,268 @@ section {
 .header .navbar a:hover {
   color: #e60000;
 }
+
+.header .icons div,
+.header .icons a {
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  border-radius: .5rem;
+  background: #eee;
+  font-size: 1.7rem;
+  color: #222;
+  margin-left: .3rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.header .icons a:hover,
+.header .icons div:hover {
+  background: #e60000;
+  color: #fff;
+}
+
+.header #menu-btn {
+  display: none;
+}
+
+@media(max-width:991px) {
+  htnl {
+    font-size: 55%;
+  }
+
+  .header {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (max-width:768px) {
+  .header #menu-btn {
+    display: inline-block;
+  }
+
+  .header .navbar {
+    position: absolute;
+    top: 99%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 0.2rem solid #222;
+    border-bottom: 0.2rem solid #222;
+    padding: 0.2rem;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  .header .navbar.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .header .navbar a {
+    display: block;
+    font-size: 2rem;
+    margin: 3rem 1rem;
+  }
+}
+
+/* sssssssss */
+/* styling product */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;1,100;1,300&display=swap');
+
+span {
+  color: #f08080;
+}
+
+
+.heading {
+  text-align: left;
+  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Tinos', serif;
+  font-weight: normal;
+  color: purple;
+  margin-bottom: 3rem;
+  font-size: 4rem;
+}
+
+.headingg {
+  text-align: left;
+  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Tinos', serif;
+  font-weight: normal;
+  color: purple;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+
+}
+
+
+.shop {
+  color: black;
+}
+
+span {
+  color: #f08080;
+}
+
+.shop .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(38rem, 5fr));
+
+}
+
+.shop .box-container .box {
+  text-align: center;
+
+
+}
+
+.shop .box-container .box:hover .img img {
+  transform: scale(1.1);
+}
+
+.shop.box-container .box:hover .img .icons {
+  transform: translateX(0rem);
+}
+
+
+
+
+
+
+
+
+.shop .box-container .box .img {
+  position: relative;
+  overflow: hidden;
+}
+
+.shop .box-container .box .img img {
+
+  padding: 30px 30px 30px 30px;
+  width: 45rem;
+  height: 50rem;
+
+}
+
+
+.shop .box-container .box .img .icons {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  transform: translate(-10rem);
+}
+
+.shop .box-container .box .img .icons a {
+  display: block;
+  height: 5rem;
+  width: 5rem;
+  line-height: 4.5rem;
+  font-size: .7rem;
+  color: #222;
+  border-radius: 0.2rem solid #222;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+
+}
+
+.shop .box-container .box .img .icons a:hover {
+  color: black;
+  background: black;
+}
+
+
+.shop .box-container .box .content {
+  padding: 1rem;
+}
+
+.shop .box-container .box .content h3 {
+  text-align: center;
+  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Tinos', serif;
+  font-size: 2.4rem;
+
+  color: rgb(94, 31, 94);
+
+  /* padding-bottom: 3rem; */
+  font-weight: lighter;
+}
+
+/* .shop .box-container .box .content .price {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #f08080;
+}
+
+.shop .box-container .box .content .price span {
+  color: #666;
+  font-size: 1.7rem;
+  text-decoration: line-through;
+} */
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.main {
+  cursor: pointer;
+}
+
+.checked {
+  color: rgb(177, 40, 111);
+}
+
+.unchecked {
+  color: black;
+}
+
+body {
+  background-color: white;
+}
+
+
+.btn1-group button {
+  background-color: white;
+  /* color: rgb(103, 8, 81); */
+  color: white;
+  width: 350px;
+  height: 50px;
+
+  cursor: pointer;
+  outline: none;
+  border: 1px solid rgb(103, 8, 81);
+}
+
+.btn1-group {
+  font-size: 25px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.btn1-group a {
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(103, 8, 81);
+}
+
+.btn1-group a:hover {
+  color: white;
+}
+
+.btn1-group button:hover {
+  background-color: rgb(103, 8, 81);
+}
+
+.btn1-group button:hover a {
+  color: white;
+}
