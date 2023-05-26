@@ -77,3 +77,20 @@ router.post("/addproduct2", (req, res) => {
     res.redirect("/admin");
   });
 });
+
+
+router.post("/addproduct3", (req, res) => {
+  let imgFile;
+  let uploadPath;
+  if (!req.files) {
+    return res.status(400).send("No files were uploaded.");
+  }
+  imgFile = req.files.img;
+});
+
+
+
+
+
+
+
