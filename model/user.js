@@ -11,5 +11,13 @@ const UserSchema = mongoose.Schema({
     lowercase: true,
     unique: true,
   },
-  
+  typeofuser: {
+    type: String,
+    require: true,
+    lowercase: true,
+  },
+  password: {
+    type: String,
+    require: true,
+  },
 });
