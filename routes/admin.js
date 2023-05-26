@@ -58,4 +58,15 @@ router.post("/addproduct2", (req, res) => {
   }
   imgFile = req.files.img;
   uploadPath = __dirname + "/public/uploads/" + req.body.name + ".png";
+  
+  imgFile.mv(uploadPath, function (err) {
+    if (err) return res.status(500).send(err);
+  });
+  var obj = {
+    name: req.body.name,
+    category: req.body.category,
+    price: req.body.price,
+    desc: req.body.desc,
+    img: req.body.name + ".png",
+  };
 });
