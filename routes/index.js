@@ -29,3 +29,14 @@ router.post("/signup", async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+router.post("/signin", async (req, res, next) => {
+  try {
+    const valid = await authSchema.validateAsync(req.body);
+    const user = await User.findOne({ email: valid.email });
+    if (!user)
+      throw createError.NotFound(`username ${valid.email} Not Registered`);
+    const validPass = await user.isValidPassword(valid.password);
+    if (!validPass)
+      throw createError.Unauthorized(`username / password not valid`);
+    
