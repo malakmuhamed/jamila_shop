@@ -29,7 +29,6 @@ router.post("/signup", async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 });
-
 router.post("/signin", async (req, res, next) => {
   try {
     const valid = await authSchema.validateAsync(req.body);
@@ -39,4 +38,17 @@ router.post("/signin", async (req, res, next) => {
     const validPass = await user.isValidPassword(valid.password);
     if (!validPass)
       throw createError.Unauthorized(`username / password not valid`);
-    
+    const accesstoken = await signAccessToken(user.id);
+    req.session.token = accesstoken;
+    req.session.fullname = user;
+    const usertype = req.session.fullname.typeofuser;
+    if (usertype == "admin") {
+      res.redirect("/admin");
+    } else if (usertype == "user") {
+      res.redirect("/");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+    next(error);
+  }
+});
