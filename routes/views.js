@@ -5,7 +5,7 @@ var imgSchema = require("../model/product");
 var UsersSchema = require("../model/user");
 
 app.get("/", (req, res) => {
-  imgSchema.find({offer : {$gt: 0}}).then((data, err) => {
+  imgSchema.find({ offer: { $gt: 0 } }).then((data, err) => {
     if (err) {
       console.log(err);
     }
@@ -39,3 +39,8 @@ app.get("/product", (req, res) => {
     });
   });
 });
+
+imgSchema.findById(req.params.id).then((data, err) => {
+  if (err) {
+    console.log(err);
+  }
