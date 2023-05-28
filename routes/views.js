@@ -52,3 +52,9 @@ app.get("/product_details/:id", (req, res) => {
     });
   });
 });
+app.get("/productcategory/:category", (req, res) => {
+  const { category } = req.params;
+  imgSchema.find({ category: category }).then((data, err) => {
+    if (err) {
+      console.log(err);
+    }
