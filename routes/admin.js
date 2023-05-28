@@ -172,6 +172,13 @@ router.get("/product", (req, res) => {
     if (err) {
       console.log(err);
     }
+    res.render("admin_product", {
+      items: data,
+      token: req.session.token === undefined ? "" : req.session.token,
+      fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+    });
+  });
+});
 
 
 
