@@ -40,7 +40,15 @@ app.get("/product", (req, res) => {
   });
 });
 
-imgSchema.findById(req.params.id).then((data, err) => {
-  if (err) {
-    console.log(err);
-  }
+app.get("/product_details/:id", (req, res) => {
+  imgSchema.findById(req.params.id).then((data, err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.render("product_details", {
+      items: data,
+      token: req.session.token === undefined ? "" : req.session.token,
+      fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+    });
+  });
+});
