@@ -58,3 +58,10 @@ app.get("/productcategory/:category", (req, res) => {
     if (err) {
       console.log(err);
     }
+        res.render("productcategory", {
+      items: data,
+      token: req.session.token === undefined ? "" : req.session.token,
+      fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+    });
+  });
+});
