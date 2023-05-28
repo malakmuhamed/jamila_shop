@@ -33,3 +33,23 @@
 
         </div>
     </div>
+    <ul class="links-container">
+        <li class="link-item"><a href="/" class="link">home</a> </li>
+        <li class="link-item"><a href="/productcategory/skincare" class="link">skin-care</a> </li>
+        <li class="link-item"><a href="/productcategory/buauty" class="link">beauty</a> </li>
+        <li class="link-item"><a href="/productcategory/lip" class="link">Lip</a> </li>
+        <li class="link-item"><a href="/productcategory/face" class="link">Face</a> </li>
+        <li class="link-item"><a href="/productcategory/eye" class="link">Eye</a> </li>
+
+    </ul>
+
+</nav>
+<script>
+
+    function search() {
+        var data = $('#searchtext').val();
+        window.location.replace(`/search/${data}`);
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/nav.js"></script>
