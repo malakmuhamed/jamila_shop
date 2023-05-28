@@ -11,7 +11,7 @@ router.use(bodyParser.json());
 const { authSchema } = require("../middleware/validation-Schema");
 
 ////////////////////////////////
-var multer = require("multer"); 
+var multer = require("multer");
 var fs = require("fs");
 const path = require("path");
 var storage = multer.diskStorage({
@@ -26,10 +26,10 @@ var upload = multer({ storage: storage });
 
 ////////////////////////////
 
-router.use((req,res,next) => {
-  if(req.session.fullname !== undefined && req.session.fullname.typeofuser === 'admin'){
+router.use((req, res, next) => {
+  if (req.session.fullname !== undefined && req.session.fullname.typeofuser === 'admin') {
     next();
-  }else{
+  } else {
     res.redirect('/')
   }
 })
@@ -98,7 +98,7 @@ router.post("/addproduct3", (req, res) => {
     name: req.body.name,
     category: req.body.category,
     price: req.body.price,
-    offer:req.body.offer,
+    offer: req.body.offer,
     desc: req.body.desc,
     img: req.body.name + ".png",
     num: num,
@@ -119,7 +119,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/customers", (req, res) => {
-  UsersSchema.find({typeofuser:"user"}).then((data, err) => {
+  UsersSchema.find({ typeofuser: "user" }).then((data, err) => {
     if (err) {
       console.log(err);
     }
@@ -132,7 +132,7 @@ router.get("/customers", (req, res) => {
 });
 
 router.get("/admins", (req, res) => {
-  UsersSchema.find({typeofuser:"admin"}).then((data, err) => {
+  UsersSchema.find({ typeofuser: "admin" }).then((data, err) => {
     if (err) {
       console.log(err);
     }
@@ -149,6 +149,13 @@ router.get("/delete/:id", async (req, res) => {
   await UsersSchema.findByIdAndDelete(id);
   res.redirect("/admin/customers");
 });
+
+router.get("/changeuser/:id", async (req, res) => {
+  const { id } = req.params;
+  const Typeofuser = await UsersSchema.findById(id).then(async (data, err) => {
+    if (err) {
+      console.log(err);
+    }
 
 
 
