@@ -156,6 +156,17 @@ router.get("/changeuser/:id", async (req, res) => {
     if (err) {
       console.log(err);
     }
+    if (data.typeofuser == "admin") {
+      await UsersSchema.findByIdAndUpdate(id, { typeofuser: "user" });
+      res.redirect("/admin");
+    } else if (data.typeofuser == "user") {
+      await UsersSchema.findByIdAndUpdate(id, { typeofuser: "admin" });
+      res.redirect("/admin/customers");
+    }
+  })
+});
+
+
 
 
 
