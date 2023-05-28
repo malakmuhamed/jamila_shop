@@ -167,6 +167,12 @@ router.get("/changeuser/:id", async (req, res) => {
 });
 
 
+router.get("/product", (req, res) => {
+  imgSchema.find({}).then((data, err) => {
+    if (err) {
+      console.log(err);
+    }
+
 
 
 
