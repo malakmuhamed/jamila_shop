@@ -1,7 +1,7 @@
-var express = require("express");
-var createError = require("http-errors");
+var express = require("express");// require express
+var createError = require("http-errors");//errors
 var router = express.Router();
-const User = require("../model/user");
+const User = require("../model/user");//mode user schema
 
 const {
   signAccessToken,
@@ -12,7 +12,7 @@ const { authSchema } = require("../middleware/validation-Schema");
 
 router.post("/signup", async (req, res, next) => {
   try {
-    const valid = await authSchema.validateAsync(req.body);
+    const valid = await authSchema.validateAsync(req.body);//byndah 3ala authschema yt3ml valid
     const action = await User.findOne({ email: valid.email });
     if (action)
       throw createError.Conflict(`username ${valid.email} created before`);

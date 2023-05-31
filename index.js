@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const morgan = require("morgan");
+const morgan = require("morgan");//
 var session = require("express-session");
-var bodyParser = require("body-parser");
+var bodyParser = require("body-parser");//
 const fileUpload = require("express-fileupload");
 
 var app = express();
@@ -32,8 +32,8 @@ const adminRouter = require("./routes/admin");
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect("mongodb+srv://malak2102056:56850906@cluster0.da8eto8.mongodb.net/jamila");
-
+  await mongoose.connect("mongodb+srv://shahdibrahiim:Sh882003@cluster0.1qxgizk.mongodb.net/jamila");
+  
   console.log("Connected With DB");
 }
 
@@ -41,17 +41,20 @@ app.use("/user", indexRouter); //user
 app.use("/", viewRouter);
 app.use("/admin", adminRouter);
 
+////////////////////////////////////////////
+
+
+
 
 app.post("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });
 
-const PORT = 8080;
+const PORT = 3000;
 const hostname = "localhost";
 app.listen(PORT, hostname, () => {
   console.log(`Server running at http://${hostname}:${PORT}/`);
 });
 
 module.exports = app;
-

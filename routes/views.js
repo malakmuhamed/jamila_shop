@@ -5,7 +5,6 @@ var imgSchema = require("../model/product");
 var UsersSchema = require("../model/user");
 
 app.get("/", (req, res) => {
-  //$gt lazem tb2a akbr mn 0 l offers l gwa image schema
   imgSchema.find({offer : {$gt: 0}}).then((data, err) => {
     if (err) {
       console.log(err);
@@ -44,7 +43,7 @@ app.get("/product", (req, res) => {
 app.get("/product_details/:id", (req, res) => {
   imgSchema.findById(req.params.id).then((data, err) => {
     if (err) {
-      console.log("no product with this id avaiable");
+      console.log(err);
     }
     res.render("product_details", {
       items: data,

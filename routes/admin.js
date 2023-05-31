@@ -213,5 +213,12 @@ router.post("/addproduct3", (req, res) => {
 
   });
 
-
+  router.get('/deleteproduct/:id', async (req, res) => {
+   try{ const { id } = req.params;
+    const action = await imgSchema.findByIdAndDelete(id, req.body);
+      res.redirect("/admin/product")
+    } catch (error) {
+      console.log(error);
+    }
+  });
 module.exports = router;

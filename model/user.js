@@ -21,7 +21,6 @@ const UserSchema = mongoose.Schema({
     require: true,
   },
 });
-
 UserSchema.pre('save', async function (next) {
   try {
     const salt = await bcrypt.genSalt(10);
@@ -32,6 +31,8 @@ UserSchema.pre('save', async function (next) {
     next(error);
   }
 });
+
+
 UserSchema.methods.isValidPassword = async function (password) {
   try {
     return await bcrypt.compare(password, this.password);
@@ -39,4 +40,5 @@ UserSchema.methods.isValidPassword = async function (password) {
     throw error;
   }
 };
+
 module.exports = mongoose.model('User', UserSchema);

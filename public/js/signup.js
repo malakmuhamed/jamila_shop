@@ -95,6 +95,51 @@ function validate() {
   }
 }
 
+// function signup(){}
+// const form = {
+//     name: document.querySelector("#b"),
+//     email: document.querySelector("#b1"),
+//     password: document.querySelector("#b2"),
+//     phone: document.querySelector("#b2"),
+//     submit: document.querySelector("#signin-btn-submit"),
+//     messages: document.getElementById("a2"),
+// };
+// let button = form.submit.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   const valid = validate();
+//   if (valid == true) {
+//     const signup = "http://localhost:3000/user/signup";
+
+//     fetch(signup, {
+//       method: "POST",
+//       headers: {
+//         Accept: "application/json, text/plain, */*",
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         fullname: form.name.value,
+//         email: form.email.value,
+//         password: form.password.value,
+//       }),
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log(data);
+//         localStorage.setItem("fullname", data.signup.fullname);
+//         localStorage.setItem("email", data.signup.email);
+//         localStorage.setItem("token", data.accesstoken);
+//         // code here //
+//         if (data.error) {
+//           alert(response.data.message); /*displays error message*/
+//         } else {
+//           // window.open("index.html", "_self"); /*opens the target page while Id & password matches*/
+//         }
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   }
+// });
 
 async function signup() {
   const valid = validate();
