@@ -33,10 +33,25 @@ const adminRouter = require("./routes/admin");
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect("mongodb+srv://malak2102056:56850906@cluster0.da8eto8.mongodb.net/jamila");
- 
+
   console.log("Connected With DB");
 }
 
 app.use("/user", indexRouter); //user
 app.use("/", viewRouter);
 app.use("/admin", adminRouter);
+
+
+app.post("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
+
+const PORT = 8080;
+const hostname = "localhost";
+app.listen(PORT, hostname, () => {
+  console.log(`Server running at http://${hostname}:${PORT}/`);
+});
+
+module.exports = app;
+
