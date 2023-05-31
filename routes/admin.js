@@ -181,6 +181,18 @@ router.get("/product", (req, res) => {
 });
 
 
+router.post('/updateproduct/:id',async (req,res) =>{
+    try {
+      const { id } = req.params;
+      const action = await imgSchema.findByIdAndUpdate(id, req.body);
+      res.redirect("/admin/product")
+    } catch (error) {
+      console.log(error);
+    }
+
+  })
+
+
 
 
 
