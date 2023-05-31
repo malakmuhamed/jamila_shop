@@ -27,3 +27,16 @@ app.use(
 );
 
 const indexRouter = require("./routes/index");
+const viewRouter = require("./routes/views");
+const adminRouter = require("./routes/admin");
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect("mongodb+srv://malak2102056:56850906@cluster0.da8eto8.mongodb.net/jamila");
+ 
+  console.log("Connected With DB");
+}
+
+app.use("/user", indexRouter); //user
+app.use("/", viewRouter);
+app.use("/admin", adminRouter);
