@@ -32,7 +32,7 @@ const adminRouter = require("./routes/admin");
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect("mongodb+srv://shahdibrahiim:Sh882003@cluster0.1qxgizk.mongodb.net/jamila");
+  await mongoose.connect("mongodb+srv://malak2102056:56850906@cluster0.da8eto8.mongodb.net/jamila");
   
   console.log("Connected With DB");
 }
