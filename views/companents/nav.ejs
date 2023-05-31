@@ -45,7 +45,24 @@
 
 </nav>
 <script>
-
+    // $(document).ready(function () {
+    //     $("#search").on('click', function (e) {
+    //         e.preventDefault();
+    //         var data = $('#searchtext').val();
+    //         $.ajax({
+    //             url: `/search`,
+    //             method: 'get',
+    //             contentType: 'application/json',
+    //             data: {
+    //                 email: form.email.value,
+    //                 password: form.password.value,
+    //             },
+    //             success: function (response) {
+    //                 console.log(response);
+    //             }
+    //         });
+    //     });
+    // });
     function search() {
         var data = $('#searchtext').val();
         window.location.replace(`/search/${data}`);

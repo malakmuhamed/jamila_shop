@@ -1,174 +1,172 @@
-* {
+*
+{
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding :0;
 
 }
-
-body {
+body{
     font-family: arial;
 }
 
-.showcase {
+.showcase
+{
     position: relative;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction:column ;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 20px;
+    padding : 0 20px;
 }
-
-.video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-}
-
-.signup-box {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    width: 400px;
-    padding: 40px;
-    margin: 90px auto 0 auto;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    opacity: 0.9;
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-
+.video-container
+{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+overflow: hidden;
 
 }
+.signup-box
+{
+position: absolute;
+top: 60%;
+left: 50%;
+width: 400px;
+padding : 40px;
+margin: 90px auto 0 auto; 
+transform: translate(-50%, -50%);
+background-color:black;
+opacity: 0.9;
+box-sizing: border-box;
+box-shadow: 0 15px 25px rgba(0,0,0,0.6) ;
+border-radius: 10px;
 
-.user-box {
 
+}
+.user-box
+{
+   
     padding-bottom: 20px;
     position: relative;
 }
-
-.user-box label {
+.user-box label{
     /* display: inline-block; */
     margin-bottom: 5px;
 }
-
-.signup-box h2 {
-    margin: 0 0 30px;
-    padding: 0;
-    color: #fff;
-    text-align: center;
+.signup-box h2{
+margin:  0 0 30px;
+padding: 0;
+color: #fff;
+text-align: center;
 
 }
-
-.signup-box .user-box {
+.signup-box .user-box
+{
     position: relative;
 }
-
-.signup-box .user-box input {
+.signup-box .user-box input{
     width: 100%;
-    padding: 10px 0;
+    padding:  10px 0;
     font-size: 16px;
     color: #fff;
-    margin-bottom: 30px;
+    margin-bottom:30px ;
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
     background-color: transparent;
 
 }
-
-.signup-box .user-box label {
+.signup-box .user-box label{
 
     position: absolute;
-    top: 0;
-    left: 0;
+    top :0;
+    left :0;
     padding: 10px 0;
     font-size: 16px;
-    color: #fff;
+    color:#fff;
     pointer-events: none;
     transition: .5s;
 
 
 }
 
-.signup-box .user-box input:focus~label,
-.signup-box .user-box input:valid~label {
-    top: -20px;
-    left: 0;
-    color: #c35083;
-    font-size: 12px;
+.signup-box .user-box input:focus ~ label ,
+.signup-box .user-box input:valid ~ label 
+{
+top:-20px;
+left:0;
+color: #c35083;
+font-size: 12px;
 
 }
-
-.signup-box form #signbtn {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #ef68a5;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px;
+.signup-box form #signbtn{
+position: relative;
+display:inline-block;
+ padding: 10px 20px; 
+color:#ef68a5 ;
+font-size: 16px;
+text-decoration: none;
+text-transform: uppercase;
+overflow: hidden;
+transition: .5s;
+margin-top: 40px;
+letter-spacing: 4px;
 
 }
-
-.signup-box form #signbtn:hover {
+.signup-box form #signbtn:hover
+{
     background-color: #ef68a5;
     color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px #ef68a5,
-        0 0 25px #ef68a5 0 0 50px #ef68a5 0 0 100px #ef68a5;
+    0 0 25px #ef68a5
+    0 0 50px #ef68a5
+    0 0 100px #ef68a5
+    ;
 }
-
 #myvideo {
     position: fixed;
     right: 0;
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-}
+  }
 
-.signup-box ion-icon {
+  .signup-box ion-icon
+  {
     position: absolute;
     right: 8px;
     color: #fff;
     font-size: 1.2em;
     top: 10px;
-}
-
-.register {
-    font-size: .9em;
+  }
+ .register
+{
+     font-size: .9em; 
     color: #fff;
     text-align: center;
-    margin: 25px 0 10px;
-}
-
+    margin:  25px 0 10px;
+} 
 .register p {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
+text-decoration: none;
+color: #fff;
+font-weight: 600;
 
 
 
 }
-
-.register #reglink {
+.register #reglink
+{
     color: #dad1d5;
 }
-
-.register p a:hover {
+.register p a:hover{
     text-decoration: underline;
-}
+} 
 
-small {
+small{
     color: white;
 }

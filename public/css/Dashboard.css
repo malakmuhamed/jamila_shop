@@ -106,6 +106,7 @@ h4{
 h5{
     font-size:0.77rem;
 }
+
 small{
     font-size:0.75rem;
 }
@@ -412,6 +413,7 @@ main .recent-orders a{
 
 
 /* ------------- Right Side ------------- */
+
 .right{
     margin-top: 1.4rem;
 }
@@ -496,6 +498,7 @@ main .recent-orders a{
 }
 
 /* ------------- Sales Analytics ------------- */
+
 .right .sales-analytics{
     margin-top: 2rem;
 }
