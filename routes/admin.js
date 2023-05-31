@@ -190,7 +190,9 @@ router.post('/updateproduct/:id',async (req,res) =>{
       console.log(error);
     }
 
-  })
+  });
+  
+  module.exports=router;
 
 
 
