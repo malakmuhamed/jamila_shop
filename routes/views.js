@@ -5,7 +5,8 @@ var imgSchema = require("../model/product");
 var UsersSchema = require("../model/user");
 
 app.get("/", (req, res) => {
-  imgSchema.find({ offer: { $gt: 0 } }).then((data, err) => {
+  //$gt lazem tb2a akbr mn 0 l offers l gwa image schema
+  imgSchema.find({offer : {$gt: 0}}).then((data, err) => {
     if (err) {
       console.log(err);
     }
@@ -35,15 +36,15 @@ app.get("/product", (req, res) => {
     }
     res.render("product", {
       items: data,
+      token: req.session.token === undefined ? "" : req.session.token,
       fullname: req.session.fullname === undefined ? "" : req.session.fullname,
     });
   });
 });
-
 app.get("/product_details/:id", (req, res) => {
   imgSchema.findById(req.params.id).then((data, err) => {
     if (err) {
-      console.log(err);
+      console.log("no product with this id avaiable");
     }
     res.render("product_details", {
       items: data,
@@ -52,13 +53,15 @@ app.get("/product_details/:id", (req, res) => {
     });
   });
 });
+
+
 app.get("/productcategory/:category", (req, res) => {
   const { category } = req.params;
   imgSchema.find({ category: category }).then((data, err) => {
     if (err) {
       console.log(err);
     }
-        res.render("productcategory", {
+    res.render("productcategory", {
       items: data,
       token: req.session.token === undefined ? "" : req.session.token,
       fullname: req.session.fullname === undefined ? "" : req.session.fullname,
@@ -80,4 +83,4 @@ app.get("/search/:searchtext" ,(req,res) =>{
   });
 })
 
- module.exports = app;
+module.exports = app;

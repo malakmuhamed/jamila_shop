@@ -22,13 +22,14 @@ router.post("/signup", async (req, res, next) => {
     req.session.token = accesstoken;
     req.session.fullname = signup;
     const usertype = req.session.fullname.typeofuser;
-        if (usertype == "user") {
+    if (usertype == "user") {
       res.redirect("/");
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 router.post("/signin", async (req, res, next) => {
   try {
     const valid = await authSchema.validateAsync(req.body);
@@ -52,6 +53,7 @@ router.post("/signin", async (req, res, next) => {
     next(error);
   }
 });
+
 router.get("/users", verifyAccessToken, async (req, res, next) => {
   try {
     const action = await User.find({});
@@ -70,3 +72,32 @@ router.get("/user/:id", async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+router.patch("/user/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const action = await User.findByIdAndUpdate(id, req.body);
+    const updatedaction = await User.findById(id);
+    res.status(200).json(updatedaction);
+    if (!action) {
+      res.status(404).json({ message: error.message });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.delete("/user/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const action = await User.findByIdAndDelete(id);
+    res.status(200).json(action);
+    if (!action) {
+      return res.status(404).json({ message: "no product" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "no product" });
+  }
+});
+
+module.exports = router;
