@@ -65,3 +65,10 @@ app.get("/productcategory/:category", (req, res) => {
     });
   });
 });
+
+app.get("/search/:searchtext" ,(req,res) =>{
+  const { searchtext } = req.params;
+  imgSchema.find({ name:  { $regex: searchtext } }).then((data, err) => {
+    if (err) {
+      console.log(err);
+    }
