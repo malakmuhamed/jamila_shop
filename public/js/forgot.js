@@ -23,6 +23,43 @@ let user = {
   //needs to be placed in a .env file
   const JWTsecret = 'some secret';
 
+  //Sending the verification code to the user.
+  
+  const oAuth2Client=new google.auth.OAuth2(CLIENT_ID,CLIENT_SECRET,REDIRECT_URI);
+oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
+
+
+async function sendVerificationEmail(email, verificationCode) {
+  try {
+    const accessToken = await oAuth2Client.getAccessToken();
+
+    const transport = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: 'adham2105856@miuegypt.edu.eg',
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken,
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET
+      }
+    });
+
+    const mailOptions = {
+      from: 'adham2105856@miuegypt.edu.eg',
+      to: email,
+      subject: 'Verify Your Email Address',
+      html: `<p>Please use the following verification code to verify your email address:</p><h3>${verificationCode}</h3>`
+    }
+
+    const result = await transport.sendMail(mailOptions);
+    console.log('Verification email sent successfully', result);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+
 app.get('/forget-password',(req,res,next)=>
     {res.render('forget-password');}
     );
