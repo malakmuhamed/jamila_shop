@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin add-Product</title>
+    <link rel="stylesheet" href="/css/Dashboard.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" />
+</head>
+
+<body>
+    <%- include('./companents/sidebar.ejs') %>
+        <!------------- End Of Sidebar ------------->
+        <main>
+
+            <div class="recent-orders">
+                <h1>All admins</h1>
+                <hr />
+                <hr />
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>email</td>
+                                <td>type</td>
+                                <td>change to</td>
+                                <td>delete</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% items.forEach(function(item) { %>
+                                <tr>
+                                    <td>
+                                        <%= item.fullname %>
+                                    </td>
+                                    <td>
+                                        <%= item.email %>
+                                    </td>
+                                    <td>
+                                        <%= item.typeofuser %>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/changeuser/<%= item.id %>">
+                                            <% if(item.typeofuser=="admin" ){%>
+                                                <%= "user" %>
+                                                    <%}else{%>
+                                                        <%= "admin" %>
+                                                            <% } %>
+                                        </a>
+                                    </td>
+
+                                    <td><a href="/admin/delete/<%= item.id  %>">Delete</a></td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+        </main>
+
+        <!------------- End Of Main ------------->
+
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                <div class="admin">
+                    <div class="profile">
+                        <div class="info">
+                            <p>Hey, <b>
+                                    <%= fullname.fullname %>
+                                </b></p>
+                            <small class="text-muted">Admin</small>
+                        </div>
+                        <div class="profile-photo">
+                            <img src="images/Adham.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!------------- End Of Top ------------->
+            <div class="recent-updates">
+                <div class="updates">
+                    <h2>Order-Details</h2>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="images/Areej.png" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Areej Ahmed </b> recieved her order of Night lion tech GPS drone.</p>
+                            <small class="text-muted">3 Minutes ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="images/Shahd1.png" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Shahd Tamer </b> declined her order of 2 DJI Air 2S.</p>
+                            <small class="text-muted">5 Minutes ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="images/Shahd2.png" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>shahd Ibrahim </b> recieved her order of LARVENDER KF102 Drone.</p>
+                            <small class="text-muted">1 Minute ago</small>
+                        </div>
+                    </div>
+                    <!-- <div class="update">
+                        <div class="profile-photo">
+                            <img src="Malak.png" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Malak Helal </b> recieved her order of Night lion tech GPS drone.</p>
+                            <small class="text-muted">3 Minutes ago</small>
+                        </div>
+                    </div> -->
+                </div>
+
+            </div>
+            <!------------- End Of Recent Updates ------------->
+
+            <div class="sales-analytics">
+                <h2>Sales Analytics</h2>
+                <div class="item online">
+                    <div class="icon">
+                        <span class="material-icons-sharp">shopping_cart</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>ONLINE ORDERS</h3>
+                            <small class="text-muted">Last 24 hours</small>
+                        </div>
+                        <h5 class="success">+39%</h5>
+                        <h3>3849</h3>
+
+                    </div>
+                </div>
+                <div class="item offline">
+                    <div class="icon">
+                        <span class="material-icons-sharp">local_mall</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>OFFLINE ORDERS</h3>
+                            <small class="text-muted">Last 24 hours</small>
+                        </div>
+                        <h5 class="danger">-17%</h5>
+                        <h3>1100</h3>
+                    </div>
+                </div>
+                <div class="item customers">
+                    <div class="icon">
+                        <span class="material-icons-sharp">person</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>NEW CUSTOMERS</h3>
+                            <small class="text-muted">Last 24 hours</small>
+                        </div>
+                        <h5 class="success">+25%</h5>
+                        <h3>849</h3>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/Dashboard.js"></script>
+
+</html>
