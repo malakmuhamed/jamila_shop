@@ -9,30 +9,24 @@ router.use(bodyParser.urlencoded({ extended: false })); //athkm f static folder
 router.use(bodyParser.json());
 
 const { authSchema } = require("../middleware/validation-Schema");
+const admin=require("../controllers/admin_controllers");
 
 ////////////////////////////////
-var multer = require("multer"); 
-var fs = require("fs");
-const path = require("path");
-var storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads"); //eh cb de
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + "-" + Date.now());
-  },
-});
-var upload = multer({ storage: storage });
+// var multer = require("multer"); 
+// var fs = require("fs");
+// const path = require("path");
+// var storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "uploads"); //eh cb de
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.fieldname + "-" + Date.now());
+//   },
+// });
+// var upload = multer({ storage: storage });
 
 ////////////////////////////
 
-router.use((req,res,next) => {
-  if(req.session.fullname !== undefined && req.session.fullname.typeofuser === 'admin'){
-    next();
-  }else{
-    res.redirect('/')
-  }
-})
 
 
 // router.post("/addproduct", upload.single("image"), (req, res) => {
@@ -57,168 +51,53 @@ router.use((req,res,next) => {
 //   });
 // });
 
-router.get("/addproduct", (req, res) => {
-  imgSchema.find({}).then((data, err) => {
-    if (err) {
-      console.log(err);
-    }
-    res.render("admin_addproduct", {
-      items: data,
-      token: req.session.token === undefined ? "" : req.session.token,
-      fullname: req.session.fullname === undefined ? "" : req.session.fullname,
-    });
-  });
-});
 
 ///////////////////////////////////
 
-router.post("/addproduct2", (req, res) => {
-  let imgFile;
-  let uploadPath;
-  if (!req.files) {
-    return res.status(400).send("No files were uploaded.");
-  }
-  imgFile = req.files.img;
-  uploadPath = __dirname + "/public/uploads/" + req.body.name + ".png";
+// router.post("/addproduct2", (req, res) => {
+//   let imgFile;
+//   let uploadPath;
+//   if (!req.files) {
+//     return res.status(400).send("No files were uploaded.");
+//   }
+//   imgFile = req.files.img;
+//   uploadPath = __dirname + "/public/uploads/" + req.body.name + ".png";
 
-  imgFile.mv(uploadPath, function (err) {
-    if (err) return res.status(500).send(err);
-  });
-  var obj = {
-    name: req.body.name,
-    category: req.body.category,
-    price: req.body.price,
-    desc: req.body.desc,
-    img: req.body.name + ".png",
-  };
-  imgSchema.create(obj).then((err, item) => {
-    if (err) {
-      console.log("");
-    } else {
-    }
-    res.redirect("/admin");
-  });
+//   imgFile.mv(uploadPath, function (err) {
+//     if (err) return res.status(500).send(err);
+//   });
+//   var obj = {
+//     name: req.body.name,
+//     category: req.body.category,
+//     price: req.body.price,
+//     desc: req.body.desc,
+//     img: req.body.name + ".png",
+//   };
+//   imgSchema.create(obj).then((err, item) => {
+//     if (err) {
+//       console.log("");
+//     } else {
+//     }
+//     res.redirect("/admin");
+//   });
+// });
+router.use((req,res,next) => {
+  if(req.session.fullname !== undefined && req.session.fullname.typeofuser === 'admin'){
+    next();
+  }else{
+    res.redirect('/')
+  }
 });
 
+  router.get("/", admin.admin_dashboard);
+router.get("/addproduct", admin.admin_addproduct);
+router.post("/addproduct",admin.addproduct3);
+  router.get("/customers", admin.get_customers);
+  router.get("/admins", admin.get_admins);
+  router.get("/delete/:id", admin.delete_customers);
+  router.get("/changeuser/:id",admin.changeuser);
+  router.get("/product", admin.viewproduct);
+  router.post('/updateproduct/:id',admin.updateproduct);
+  router.get('/deleteproduct/:id', admin.deleteproduct);
 
-router.post("/addproduct3", (req, res) => {
-    let imgFile;
-    let uploadPath;
-    if (!req.files) {
-      return res.status(400).send("No files were uploaded.");
-    }
-    imgFile = req.files.img;
-    for (i = 0; i < imgFile.length; i++) {
-      uploadPath = path.join(__dirname + "/../public/uploads/" + i + req.body.name + ".png");
-      console.log(uploadPath);
-      imgFile[i].mv(uploadPath, function (err) {
-        if (err) return res.status(500).send(err);
-      });
-    }
-    const num = imgFile.length;
-    var obj = {
-      name: req.body.name,
-      category: req.body.category,
-      price: req.body.price,
-      offer:req.body.offer,
-      desc: req.body.desc,
-      img: req.body.name + ".png",
-      num: num,
-    };
-    imgSchema.create(obj).then((err, item) => {
-      if (err) {
-        console.log("");
-      } else {
-      }
-      res.redirect("/admin/product");
-    });
-  });
-
-  router.get("/", (req, res) => {
-    res.render("admin_dashboard", {
-      token: req.session.token === undefined ? "" : req.session.token,
-      fullname: req.session.fullname === undefined ? "" : req.session.fullname,
-    });
-  });
-  
-  router.get("/customers", (req, res) => {
-    UsersSchema.find({typeofuser:"user"}).then((data, err) => {
-      if (err) {
-        console.log(err);
-      }
-      res.render("admin_customers", {
-        items: data,
-        token: req.session.token === undefined ? "" : req.session.token,
-        fullname: req.session.fullname === undefined ? "" : req.session.fullname,
-      });
-    });
-  });
-
-  router.get("/admins", (req, res) => {
-    UsersSchema.find({typeofuser:"admin"}).then((data, err) => {
-      if (err) {
-        console.log(err);
-      }
-      res.render("admin_customers", {
-        items: data,
-        token: req.session.token === undefined ? "" : req.session.token,
-        fullname: req.session.fullname === undefined ? "" : req.session.fullname,
-      });
-    });
-  });
-  
-  router.get("/delete/:id", async (req, res) => {
-    const { id } = req.params;
-    await UsersSchema.findByIdAndDelete(id);
-    res.redirect("/admin/customers");
-  });
-
-  router.get("/changeuser/:id", async (req, res) => {
-    const { id } = req.params;
-    const Typeofuser = await UsersSchema.findById(id).then(async (data, err) => {
-      if (err) {
-        console.log(err);
-      }
-      if(data.typeofuser == "admin"){
-        await UsersSchema.findByIdAndUpdate(id, {typeofuser : "user"});
-        res.redirect("/admin");
-      }else if(data.typeofuser == "user"){
-        await UsersSchema.findByIdAndUpdate(id, {typeofuser : "admin"});
-        res.redirect("/admin/customers");
-      }
-    })
-  });
-  
-  router.get("/product", (req, res) => {
-    imgSchema.find({}).then((data, err) => {
-      if (err) {
-        console.log(err);
-      }
-      res.render("admin_product", {
-        items: data,
-        token: req.session.token === undefined ? "" : req.session.token,
-        fullname: req.session.fullname === undefined ? "" : req.session.fullname,
-      });
-    });
-  });
-
-  router.post('/updateproduct/:id',async (req,res) =>{
-    try {
-      const { id } = req.params;
-      const action = await imgSchema.findByIdAndUpdate(id, req.body);
-      res.redirect("/admin/product")
-    } catch (error) {
-      console.log(error);
-    }
-
-  });
-
-  router.get('/deleteproduct/:id', async (req, res) => {
-   try{ const { id } = req.params;
-    const action = await imgSchema.findByIdAndDelete(id, req.body);
-      res.redirect("/admin/product")
-    } catch (error) {
-      console.log(error);
-    }
-  });
 module.exports = router;
