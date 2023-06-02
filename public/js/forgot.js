@@ -1,18 +1,27 @@
 const express=require('express');
 const jwt=require('jsonwebtoken');
+const nodemailer=require('nodemailer');
+const {google}=require('googleapis');
 
 const app=express();
 
-//
+const CLIENT_ID='422604657182-3kk41n1kufuh2auavmifa367nutiiq4t.apps.googleusercontent.com';
+const CLIENT_SECRET='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';
+const REDIRECT_URI='https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN='1//044b0hbA0ky_uCgYIARAAGAQSNwF-L9IrnsrrkgH6Kr1BB1b4t7Wd5NHgPIwu4XuyA9Hv1CK8F0dY6_cxcWlCLsiiNiYU1_P0SaY';
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.set('view engine', 'ejs');
 
-let user={
-    id:"vjkdfnvjnsfjhvs",
-    email:"adham.soliman725@gmail.com",
-    password:"########",
-};
+let user = {
+    id: "vjkdfnvjnsfjhvs",
+    email: "adham2105856@miuegypt.edu.eg",
+    password: "password",
+  };
+
+  //needs to be placed in a .env file
+  const JWTsecret = 'some secret';
 
 app.get('/forget-password',(req,res,next)=>
     {res.render('forget-password');}
