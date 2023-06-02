@@ -59,3 +59,43 @@ app.get('/forget-password',(req,res,next)=>
         }
     }
     );
+
+    app.post('/reset-password/:id/:token',(req,res,next)=>
+    {
+        //Getting the id and token from the request parameters(routes) in this function. 
+        const {id,token}=req.params;
+        const {password1,password2}=req.body;
+        //Verifying that the id exists in the database.
+        if(user.id!==id)
+        {
+            res.send("Invalid ID");
+        }
+
+        //Checking if the token is valid. 
+        const secret=JWTsecret+user.password;
+        //Validating the password and its confirmation.
+        if(password1===password2){
+            return true;
+        }
+        else{
+            res.send("Passwords must match");
+        }
+
+        //Finding the user with the payload email and id and updating his password after resetting it.
+        user.password=password1;
+        res.send(user);
+        try{
+            const payload=jwt.verify(token,secret);
+        }
+        catch(error){
+            res.send(error.message);
+        }
+
+    }
+    );
+
+
+
+app.listen(3000,()=>
+console.log('server running on port 3000')
+)
