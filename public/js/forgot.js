@@ -107,26 +107,31 @@ app.post('/forget-password', async (req, res, next) => {
         const secret=JWTsecret+user.password;
 
         //verifying that the token is correct
-        try{
-            const payload=jwt.verify(token,secret);
-            res.render('reset-password', {email:user.email});
-        }   catch(error){
+        try {
+            const payload = jwt.verify(token, secret);
+            const { email, verificationCode } = payload;
+            res.render('reset-password', { email: email, verificationCode: verificationCode });
+          } catch (error) {
             console.log(error.message);
             res.send(error.message);
-        }
-    }
-    );
+          }
+        });
 
     app.post('/reset-password/:id/:token',(req,res,next)=>
     {
         //Getting the id and token from the request parameters(routes) in this function. 
         const {id,token}=req.params;
-        const {password1,password2}=req.body;
+        const {password1,password2,verificationCode}=req.body;
         //Verifying that the id exists in the database.
         if(user.id!==id)
         {
             res.send("Invalid ID");
         }
+        //validating the verification code.
+        if (verificationCode !== req.session.verificationCode) {
+            res.send("Invalid verification code");
+            return;
+          }
 
         //Checking if the token is valid. 
         const secret=JWTsecret+user.password;
@@ -153,6 +158,6 @@ app.post('/forget-password', async (req, res, next) => {
 
 
 
-app.listen(3000,()=>
-console.log('server running on port 3000')
-)
+// app.listen(3300,()=>
+// console.log('server running on port 3000')
+// )
