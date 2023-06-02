@@ -34,3 +34,28 @@ app.get('/forget-password',(req,res,next)=>
  res.send('password reset link has been sent to your email');
  }
  );
+
+ app.get('/reset-password/:id/:token',(req,res,next)=>
+    {
+        const {id,token}=req.params;
+        
+        //Check if this id exists in the database.
+        if(id!==user.id)
+        {
+            res.send('Invalid ID');
+            return;
+        }
+
+        //The id is valid, and there is a valid user with this id
+        const secret=JWTsecret+user.password;
+
+        //verifying that the token is correct
+        try{
+            const payload=jwt.verify(token,secret);
+            res.render('reset-password', {email:user.email});
+        }   catch(error){
+            console.log(error.message);
+            res.send(error.message);
+        }
+    }
+    );
