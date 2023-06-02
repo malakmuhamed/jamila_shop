@@ -17,67 +17,71 @@
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="footer.css">
 </head>
+
 <body>
 
     <%- include('./companents/nav.ejs') %>
-    <section class="shop" id="shop">
-        <!-- <h1 class="heading">our <span>shop</span></h1> -->
-        <h1 class="heading">Shop All Makeup Products</h1>
-        <br>
+        <section class="shop" id="shop">
+            <!-- <h1 class="heading">our <span>shop</span></h1> -->
+            <h1 class="heading">Shop All Makeup Products</h1>
+            <br>
 
 
-        <!-- <div class="btn1-group"> -->
-        <h2 class="headingg">CATEGORIES</h2>
-        <!-- <div class="btn1-group"> -->
-        <div class="btn1-group">
-            <button style="width: 60px; height: 40px;"><a href="/">home</a></button>
-            <button style="width: 60px; height: 40px;"><a href="/product">ALL</a></button>
-            <button style="width: 60px; height: 40px;"><a href="/productcategory/lip">Lip</a></button>
-            <button style="width: 60px; height: 40px;"><a href="/productcategory/face">Face</a></button>
-            <button style="width: 60px; height: 40px;"><a href="/productcategory/eye">Eye</a></button>
-            <button style="width: 60px; height: 40px;"><a href="/productcategory/skincare">Skincare</a></button>
+            <!-- <div class="btn1-group"> -->
+            <h2 class="headingg">CATEGORIES</h2>
+            <!-- <div class="btn1-group"> -->
+            <div class="btn1-group">
+                <button style="width: 60px; height: 40px;"><a href="/">home</a></button>
+                <button style="width: 60px; height: 40px;"><a href="/product">ALL</a></button>
+                <button style="width: 60px; height: 40px;"><a href="/productcategory/lip">Lip</a></button>
+                <button style="width: 60px; height: 40px;"><a href="/productcategory/face">Face</a></button>
+                <button style="width: 60px; height: 40px;"><a href="/productcategory/eye">Eye</a></button>
+                <button style="width: 60px; height: 40px;"><a href="/productcategory/skincare">Skincare</a></button>
 
 
-        </div>
+            </div>
 
 
-        <div class="box-container">
-            <% items.forEach(function(image) { %>
-                <div class="box">
-                    <div class="container">
-                        <div class="img">
-                            <img src="uploads/0<%= image.img %>" class="image">
-                            <div class="overlay">
-                                <div class="text">
-                                    <a href="product_details/<%= image.id %>">
-                                        <img src="uploads/1<%= image.img %>">
-                                    </a>
+            <div class="box-container">
+                <% items.forEach(function(image) { %>
+                    <div class="box">
+                        <div class="container">
+                            <div class="img">
+                                <img src="uploads/0<%= image.img %>" class="image">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <a href="product_details/<%= image.id %>">
+                                            <img src="uploads/1<%= image.img %>">
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
+                        </div>
+                        <div class="content">
+                            <h3>
+                                <%= image.name %>
+                            </h3>
+                            <div style="margin:10px ;padding:10px" class="main">
+                                <i class="fa fa-star checked" id="one"></i>
+                                <i class="fa fa-star unchecked" id="two"></i>
+                                <i class="fa fa-star unchecked" id="three"></i>
+                                <i class="fa fa-star unchecked" id="four"></i>
+                                <i class="fa fa-star unchecked" id="five"></i>
+                            </div>
+                            <!-- <div class="pitce">$40 <span>$200.99</span></div> -->
+                            <!-- <a href="#" class="btn">add to cart</a> -->
+                            <div class="btn1-group">
+                                <button><a href="#"> A d d t o B A G .<%= image.price %> EGP</a></button>
+                            </div>
                         </div>
                     </div>
-                    <div class="content">
-                        <h3>
-                            <%= image.name %>
-                        </h3>
-                        <div style="margin:10px ;padding:10px" class="main">
-                            <i class="fa fa-star checked" id="one"></i>
-                            <i class="fa fa-star unchecked" id="two"></i>
-                            <i class="fa fa-star unchecked" id="three"></i>
-                            <i class="fa fa-star unchecked" id="four"></i>
-                            <i class="fa fa-star unchecked" id="five"></i>
-                        </div>
-                        <!-- <div class="pitce">$40 <span>$200.99</span></div> -->
-                        <!-- <a href="#" class="btn">add to cart</a> -->
-                        <div class="btn1-group">
-                            <button><a href="#"> A d d t o B A G .<%= image.price %> EGP</a></button>
-                        </div>
-                    </div>
-                </div>
-                <% }) %>
-        </div>
-    </section>
+                    <% }) %>
+            </div>
+        </section>
+        <%- include('./companents/footer.ejs') %>
+            <script src="/js/footer.js"></script>
+            <link rel="stylesheet" type="text/css" href="footer.css" />
 
 
 
