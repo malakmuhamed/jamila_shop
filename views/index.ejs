@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +70,7 @@
                         <div class="product-card">
                             <div class="product-image">
                                 <span class="discount-tag">
-                                    <%=image.offer%>% off 
+                                    <%=image.offer%>% off
                                 </span>
                                 <img src="uploads/0<%= image.img %>" alt="" class="product-thumb">
                                 <button class="card-btn"> Add To Bag</button>
@@ -209,5 +210,7 @@
             <script src="js/index.js"></script>
             <script src="js/slider.js"></script>
             <script type="text/javascript" src="slider.js"></script>
+            <%- include('./companents/footer.ejs') %>
 </body>
+
 </html>
