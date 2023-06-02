@@ -24,7 +24,7 @@ let user = {
   const JWTsecret = 'some secret';
 
   //Sending the verification code to the user.
-  
+
   const oAuth2Client=new google.auth.OAuth2(CLIENT_ID,CLIENT_SECRET,REDIRECT_URI);
 oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
 
@@ -60,27 +60,38 @@ async function sendVerificationEmail(email, verificationCode) {
 }
 
 
-app.get('/forget-password',(req,res,next)=>
-    {res.render('forget-password');}
-    );
-    app.post('/forget-password',(req,res,next)=>
-    { const {email}=req.body;
+app.get('/forget-password', (req, res, next) => {
+  res.render('forget-password');
+});
 
- //Creating a one time link for a period of time.
- const secret= JWTsecret+user.password;              //JWT is common but password isn't so it will be unique for each user.
- const payload={                                     //The payload is inside the token.
-     email:user.email,
-     id:user.password,
- };   
+app.post('/forget-password', async (req, res, next) => {
+  const { email } = req.body;
 
- //Creating the token.
- const token=jwt.sign(payload,secret,{expiresIn: '15m'});//expiresIn is a function provided by jsonwebtoken.
- const link=`http://localhost:3000/reset-password/${user.id}/${token}`;
- console.log(link);
- res.send('password reset link has been sent to your email');
- }
- );
+  if (email !== user.email) {
+    res.send('Email does not exist');
+    return;
+  }
 
+  const verificationCode = Math.random().toString(36).substring(2, 8);
+  await sendVerificationEmail(email, verificationCode);
+  const secret = JWTsecret + user.password;                       /*JWT is common but password isn't,
+                                                                   so it will be unique for each user*/
+  
+  const payload = {                                               //Creating the payload which is inside the token.
+    email: user.email,
+    id: user.password,
+    verificationCode: verificationCode
+  };
+  const token = jwt.sign(payload, secret, { expiresIn: '15m' });
+  const link = `http://localhost:3300/reset-password/${user.id}/${token}`;
+  res.send('Password verification code has been sent to your email');
+  
+
+  //res.send(link);
+});
+
+
+ 
  app.get('/reset-password/:id/:token',(req,res,next)=>
     {
         const {id,token}=req.params;
