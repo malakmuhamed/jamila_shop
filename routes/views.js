@@ -19,4 +19,12 @@ app.post("/addcart",(req,res,next)=>{
   next()
   res.status(200)
 })
+
+app.get("/cart",(req,res)=>{
+  res.render("cart", {
+    cart : req.session.cart === undefined ? [] : req.session.cart,
+    fullname: req.session.fullname === undefined ? "" : req.session.fullname,
+  })
+})
+
 module.exports = router;
