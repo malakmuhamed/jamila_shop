@@ -14,5 +14,9 @@ router.get("/product_details/:id", views.product_details);
 router.get("/productcategory/:category", views.product_category);
 router.get("/search/:searchtext" ,views.search);
 
-
+app.post("/addcart",(req,res,next)=>{
+  req.session.cart = req.body;
+  next()
+  res.status(200)
+})
 module.exports = router;
