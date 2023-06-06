@@ -1,24 +1,65 @@
-const express=require('express');
-const jwt=require('jsonwebtoken');
+// const express=require('express');
+// const jwt=require('jsonwebtoken');
 const nodemailer=require('nodemailer');
 const {google}=require('googleapis');
+// const session=require('express-session');
+// const mongoose=require('mongoose');
+//const { token } = require('morgan');
+
 
 const app=express();
 
-const CLIENT_ID='422604657182-3kk41n1kufuh2auavmifa367nutiiq4t.apps.googleusercontent.com';
-const CLIENT_SECRET='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';
-const REDIRECT_URI='https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN='1//044b0hbA0ky_uCgYIARAAGAQSNwF-L9IrnsrrkgH6Kr1BB1b4t7Wd5NHgPIwu4XuyA9Hv1CK8F0dY6_cxcWlCLsiiNiYU1_P0SaY';
 
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect("mongodb+srv://malak2102056:56850906@cluster0.da8eto8.mongodb.net/jamila");
+  console.log("Connected With DB");
+}
+
+
+const userSchema = mongoose.Schema({
+  fullname: {
+    type: String,
+    require: true,
+  },
+  email: {
+    type: String,
+    require: true,
+    lowercase: true,
+    unique: true,
+  },
+  typeofuser: {
+    type: String,
+    require: true,
+    lowercase: true,
+  },
+  password: {
+    type: String,
+    require: true,
+  },
+});
+
+const User=mongoose.model('User',userSchema);
+
+// let user = {
+//     
+//     email: "adham2105856@miuegypt.edu.eg",
+//     password: "password",
+//   };
+
+
+app.use(session({
+  secret:'mysecret',
+  resave:false,
+  saveUninitialized:false,
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.set('view engine', 'ejs');
 
-let user = {
-    id: "vjkdfnvjnsfjhvs",
-    email: "adham2105856@miuegypt.edu.eg",
-    password: "password",
-  };
+
+
 
   //needs to be placed in a .env file
   const JWTsecret = 'some secret';
@@ -27,6 +68,8 @@ let user = {
 
   const oAuth2Client=new google.auth.OAuth2(CLIENT_ID,CLIENT_SECRET,REDIRECT_URI);
 oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
+
+
 
 
 async function sendVerificationEmail(email, verificationCode) {
@@ -60,56 +103,102 @@ async function sendVerificationEmail(email, verificationCode) {
 }
 
 
-app.get('/forget-password', (req, res, next) => {
+
+app.get('/signin', (req, res) => {
   res.render('forget-password');
 });
 
-app.post('/forget-password', async (req, res, next) => {
+app.post('/signin', async (req, res, next) => {
   const { email } = req.body;
-
-  if (email !== user.email) {
-    res.send('Email does not exist');
-    return;
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    return res.status(404).send('User not found');
   }
 
-  const verificationCode = Math.random().toString(36).substring(2, 8);
-  await sendVerificationEmail(email, verificationCode);
-  const secret = JWTsecret + user.password;                       /*JWT is common but password isn't,
-                                                                   so it will be unique for each user*/
   
-  const payload = {                                               //Creating the payload which is inside the token.
+  // Generate and store a verification code in the user's session
+  function generateVerificationCode() {
+    const length = 6; // You can adjust the length of the verification code as needed
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+  }
+   const verificationCode = generateVerificationCode();
+  req.session.token = {
     email: user.email,
-    id: user.password,
+    id: user._id,
     verificationCode: verificationCode
   };
-  const token = jwt.sign(payload, secret, { expiresIn: '15m' });
-  const link = `http://localhost:3300/reset-password/${user.id}/${token}`;
-  res.send('Password verification code has been sent to your email');
-  
 
-  //res.send(link);
+  //Creating the token:
+// const token = jwt.sign(
+//   { email: user.email, verificationCode: verificationCode },
+//   JWTsecret + user.password,
+//   { expiresIn: '1h' }
+// );
+  // Send a verification email to the user
+  sendVerificationEmail(user.email, verificationCode);
+
+  // Redirect the user to the verification page
+  res.redirect('/verification');
 });
 
+app.get('/verification', (req, res) => {
+  // Render the verification page and pass in the user's email and verification code
+  res.render('verification', {
+    email: req.session.token,
+    verificationCode: req.session.token.verificationCode
+  });
+});
 
- 
- app.get('/reset-password/:id/:token',(req,res,next)=>
+app.post('/verification', async (req, res) => {
+  const { verificationCode } = req.body;
+  const { id } = req.session.token;
+  const {email}=req.body;
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    return res.status(404).send('User not found');
+  }
+
+  // Check that the verification code entered by the user matches the one stored in the session
+  if (verificationCode !== req.session.token.verificationCode) {
+    return res.status(400).send('Invalid verification code');
+  }
+  const token = jwt.sign(
+    { email: req.session.token.email, verificationCode: verificationCode },
+    JWTsecret + user.password,
+    { expiresIn: '1h' }
+  );
+
+  // Redirect the user to the password reset page
+  res.redirect(`/reset-password/${id}/${token}`);
+});
+
+app.get('/reset-password/:id/:token',async (req,res)=>
     {
         const {id,token}=req.params;
         
         //Check if this id exists in the database.
-        if(id!==user.id)
-        {
-            res.send('Invalid ID');
-            return;
-        }
+        
 
         //The id is valid, and there is a valid user with this id
-        const secret=JWTsecret+user.password;
+        //const secret=JWTsecret+user.password;
 
         //verifying that the token is correct
         try {
-            const payload = jwt.verify(token, secret);
-            const { email, verificationCode } = payload;
+          const user = await User.findById(id);
+          if (!user) {
+            res.status(400).send('user not found');
+          }
+      
+          //Checking if the token is valid. 
+          
+          const secret = JWTsecret + user.password;
+          const payload = jwt.verify(token, secret);
+          const { email, verificationCode } = payload;
             res.render('reset-password', { email: email, verificationCode: verificationCode });
           } catch (error) {
             console.log(error.message);
@@ -117,47 +206,168 @@ app.post('/forget-password', async (req, res, next) => {
           }
         });
 
-    app.post('/reset-password/:id/:token',(req,res,next)=>
-    {
-        //Getting the id and token from the request parameters(routes) in this function. 
-        const {id,token}=req.params;
-        const {password1,password2,verificationCode}=req.body;
-        //Verifying that the id exists in the database.
-        if(user.id!==id)
-        {
-            res.send("Invalid ID");
-        }
-        //validating the verification code.
-        if (verificationCode !== req.session.verificationCode) {
-            res.send("Invalid verification code");
-            return;
+        app.post('/reset-password/:id/:token', async (req, res, next) => {
+          //Getting the id and token from the request parameters(routes) in this function. 
+          const { id} = req.params;
+          const { password1, password2} = req.body;
+          //Verifying that the id exists in the database.
+          try {
+            const user = await User.findById(id);
+            if (!user) {
+              res.status(400).send('user not found');
+            }
+        
+            //Checking if the token is valid. 
+            // const secret = JWTsecret + user.password;
+            // const payload = jwt.verify(token, secret);
+            // const { email, verificationCode } = payload;
+            //Validating the password and its confirmation.
+            if (password1 !== password2) {
+              return res.status(400).send('Passwords must match');
+            }
+        
+            //Finding the user with the payload email and id and updating his password after resetting it.
+            user.password = password1;
+            await user.save();
+            res.send("Password reset successful");
           }
+          catch (error) {
+            next(error);
+          }
+        });
+        
 
-        //Checking if the token is valid. 
-        const secret=JWTsecret+user.password;
-        //Validating the password and its confirmation.
-        if(password1===password2){
-            return true;
-        }
-        else{
-            res.send("Passwords must match");
-        }
+ 
+//  app.get('/reset-password/:id:/token',async (req,res,next)=>
+//     {
+//         const {id,token}=req.params;
+        
+//         //Check if this id exists in the database.
+        
 
-        //Finding the user with the payload email and id and updating his password after resetting it.
-        user.password=password1;
-        res.send(user);
-        try{
-            const payload=jwt.verify(token,secret);
-        }
-        catch(error){
-            res.send(error.message);
-        }
+//         //The id is valid, and there is a valid user with this id
+//         //const secret=JWTsecret+user.password;
 
-    }
-    );
+//         //verifying that the token is correct
+//         try {
+//           const user = await User.findById(id);
+//           if (!user) {
+//             res.status(400).send('user not found');
+//           }
+      
+//           //Checking if the token is valid. 
+          
+//           const secret = JWTsecret + user.password;
+//           const payload = jwt.verify(token, secret);
+//           const { email, verificationCode } = payload;
+//             res.render('reset-password', { email: email, verificationCode: verificationCode });
+//           } catch (error) {
+//             console.log(error.message);
+//             res.send(error.message);
+//           }
+//         });
+
+    
+
+    
+app.listen(3300,()=>
+console.log('server running on port 3300')
+)
 
 
 
-// app.listen(3300,()=>
-// console.log('server running on port 3000')
-// )
+
+
+
+
+
+
+
+
+
+
+
+
+// app.post('/reset-password/:id/:token',async (req,res,next)=>
+    // {
+    //     //Getting the id and token from the request parameters(routes) in this function. 
+    //     const {id,token}=req.params;
+    //     const {password1,password2,verificationCode}=req.body;
+    //     //Verifying that the id exists in the database.
+    //     try{
+    //       const user=User.findOne({_id:id});
+    //     if(!user)
+    //     {
+    //       res.status(400).send('user not found');
+    //     }
+
+    //     //Checking if the token is valid. 
+    //     const secret=JWTsecret+user.password;
+    //     const payload=jwt.verify(token.secret);
+    //     //Validating the password and its confirmation.
+    //     if(password1!==password2){
+    //       return res.status(400).send('Passwords must match');   
+    //      }
+       
+         
+
+    //     //Finding the user with the payload email and id and updating his password after resetting it.
+    //     user.password=password1;
+    //      await user.save();
+    //      res.send("Password reset successful");
+    //     }
+    //     catch(error){
+    //       next(error);
+    //     }
+
+    // }
+    // );
+
+    //specifying the url path to the intended page.
+// app.get('/verification',(req,res,next)=>{
+//   res.render('verification');
+// });
+
+// app.post('/verification',async (req,res)=>{
+//   const {verificationCode}=req.body;
+//   const {email}=req.body;
+  
+//   const user=await User.findOne({email:email});
+
+//   if(verificationCode===req.session.verificationCode)
+//   {
+//     res.redirect(`/reset-password/${user.id}/${req.session.token}`);
+//   }
+//   else{
+//     res.render('verification',{errorMessage:'Invalid Verification Code'});
+//   }
+// });
+// async function sendVerificationEmail(email, verificationCode) {
+//   try {
+//     const accessToken = await oAuth2Client.getAccessToken();
+
+//     const transport = nodemailer.createTransport({
+//       service: 'gmail',
+//       auth: {
+//         type: 'OAuth2',
+//         user: 'adham2105856@miuegypt.edu.eg',
+//         refreshToken: REFRESH_TOKEN,
+//         accessToken: accessToken,
+//         clientId: CLIENT_ID,
+//         clientSecret: CLIENT_SECRET
+//       }
+//     });
+
+//     const mailOptions = {
+//       from: 'adham2105856@miuegypt.edu.eg',
+//       to: email,
+//       subject: 'Verify Your Email Address',
+//       html: `<p>Please use the following verification code to verify your email address:</p><h3>${verificationCode}</h3>`
+//     }
+
+//     const result = await transport.sendMail(mailOptions);
+//     console.log('Verification email sent successfully', result);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// }
