@@ -115,3 +115,30 @@
                 email: document.getElementById("email"),
                 mobile: document.getElementById("mobile"),
             };
+   function confirmcart(cart) {
+                $.ajax({
+                    url: "/confirmcart",
+                    method: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        name: form.name.value,
+                        email: form.email.value,
+                        mobile:form.mobile.value,
+                        cart : cart
+                    }),
+                    success: function (response) {
+                            window.location.replace('/');
+                            localStorage.clear();
+                    },
+                    error: function (response) {
+                        document.getElementById("errormassage").innerHTML = response.responseJSON.message
+                    }
+                }
+                )
+
+            }
+
+        </script>
+</body>
+
+</html>
