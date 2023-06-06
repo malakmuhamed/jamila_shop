@@ -273,7 +273,21 @@
       slides[slideIndex - 1].style.display = "block";
       dots[slideIndex - 1].className += " active";
       captionText.innerHTML = dots[slideIndex - 1].alt;
+   
+   
+      $.ajax({
+        url: "/addcart",
+        method: 'post',
+        contentType: 'application/json',
+        data: localStorage.getItem("bag"),
+        success: function (response) {
+        },
+        }
+      )
+
     }
+
+
   </script>
 
 </body>
