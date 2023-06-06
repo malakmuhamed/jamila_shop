@@ -26,5 +26,10 @@ app.get("/cart",(req,res)=>{
     fullname: req.session.fullname === undefined ? "" : req.session.fullname,
   })
 })
+app.post("/confirmcart",async (req,res,next)=>{
+  const user = new OrderSchema(req.body);
+   const data = await user.save();
+   res.status(200).json({ data: data });
+})
 
 module.exports = router;
