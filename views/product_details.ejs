@@ -273,9 +273,20 @@
       slides[slideIndex - 1].style.display = "block";
       dots[slideIndex - 1].className += " active";
       captionText.innerHTML = dots[slideIndex - 1].alt;
-   
-   
-      $.ajax({
+    }
+
+    function addtobag(image){
+    var data = JSON.parse(localStorage.getItem("bag") || "[]");
+    var esl = JSON.parse(image)
+    var total = esl.price - esl.price * esl.offer /100
+    Object.assign(esl, {total: total});
+    console.log(esl);
+    data.push(esl);
+    localStorage.setItem("bag", JSON.stringify(data,total));
+    window.location.reload();
+    const arr = JSON.parse(localStorage.getItem("bag"))
+
+    $.ajax({
         url: "/addcart",
         method: 'post',
         contentType: 'application/json',
@@ -284,10 +295,7 @@
         },
         }
       )
-
-    }
-
-
+}
   </script>
 
 </body>
