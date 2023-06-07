@@ -250,7 +250,7 @@ app.post('/reset-password/:id/:token', async (req, res, next) => {
 });
 
 app.use("/user", indexRouter); //user
-app.use("/", viewRouter);
+app.use("/", viewRouter);//all on front
 app.use("/admin", adminRouter);//admin
 
 ////////////////////////////////////////////
