@@ -23,7 +23,7 @@ app.use(morgan("common"));
 require("dotenv").config();
 //for images
 app.use(fileUpload());
-
+//for session
 app.use(
   session({
     secret: "keyboard cat",
