@@ -1,10 +1,10 @@
 var express = require("express");
 var createError = require("http-errors");
 var app = express();
-var router = express.Router();
 var imgSchema = require("../model/product");
 var UsersSchema = require("../model/user");
 var orderSchema = require("../model/order");
+const views = require("../controllers/views_controllers");
 const offers = (req, res) => {
   imgSchema.find({ offer: { $gt: 0 } }).then((data, err) => {
     if (err) {
