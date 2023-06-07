@@ -58,7 +58,7 @@ app.use(
 const indexRouter = require("./routes/index");
 const viewRouter = require("./routes/views");
 const adminRouter = require("./routes/admin");
-//connecting to db
+//connecting  db
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect("mongodb+srv://malak2102056:56850906@cluster0.da8eto8.mongodb.net/jamila");
