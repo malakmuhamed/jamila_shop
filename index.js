@@ -256,7 +256,7 @@ app.use("/admin", adminRouter);
 ////////////////////////////////////////////
 
 
-
+//destroying session
 
 app.post("/logout", (req, res) => {
   req.session.destroy();
