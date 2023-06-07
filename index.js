@@ -251,7 +251,7 @@ app.post('/reset-password/:id/:token', async (req, res, next) => {
 
 app.use("/user", indexRouter); //user
 app.use("/", viewRouter);
-app.use("/admin", adminRouter);
+app.use("/admin", adminRouter);//admin
 
 ////////////////////////////////////////////
 
