@@ -207,7 +207,7 @@ app.get('/reset-password/:id/:token', async (req, res) => {
       res.status(400).send('user not found');
     }
 
-    //Checking if the token is valid. 
+    //Checking if the token is valid
 
     const secret = JWTsecret + user.password;
     const payload = jwt.verify(token, secret);
