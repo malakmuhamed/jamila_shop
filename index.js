@@ -21,7 +21,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(morgan("common"));
 require("dotenv").config();
-
+//for images
 app.use(fileUpload());
 
 app.use(
