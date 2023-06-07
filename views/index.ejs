@@ -73,7 +73,8 @@
                                     <%=image.offer%>% off
                                 </span>
                                 <img src="uploads/0<%= image.img %>" alt="" class="product-thumb">
-                                <button class="card-btn"> Add To Bag</button>
+                                <button class="card-btn" onclick="addtobag('<%= JSON.stringify(image)  %>')"> Add To
+                                    Bag</button>
                             </div>
                             <div class="product-info">
                                 <!-- <h2 class="product-brand">brand</h2> -->
@@ -161,12 +162,55 @@
                 </p>
                 </div>
             </section>
-
+            <section class="footers">
+                <footer>
+                    <div class="content" style="border:none;">
+                        <div class="left box">
+                            <div class="upper">
+                                <div class="topic">About us</div>
+                                <p>jamila's shop is where you feel the most jamila</p>
+                            </div>
+                            <div class="lower">
+                                <div class="topic">Contact us</div>
+                                <div class="phone">
+                                    <a href="#"><i class="fas fa-phone-volume"></i>01119988687</a>
+                                </div>
+                                <div class="email">
+                                    <a href="#"><i class="fas fa-envelope"></i>jamila@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="middle box">
+                            <div class="topic">Our Services</div>
+                            <div><a href="#">Get Help</a></div>
+                            <div><a href="#">Shipping</a></div>
+                            <div><a href="#">Returns</a></div>
+                            <div><a href="#">order Status</a></div>
+                            <div><a href="#">payment options</a></div>
+                        </div>
+                        <div class="right box">
+                            <div class="topic">Subscribe us</div>
+                            <form action="#">
+                                <input type="text" placeholder="Enter email address">
+                                <input type="submit" name="" value="Send">
+                                <div class="media-icons">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div style="color: black;">
+                    </div>
+                </footer>
+            </section>
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
             <script src="js/index.js"></script>
             <script src="js/slider.js"></script>
             <script type="text/javascript" src="slider.js"></script>
-            <%- include('./companents/footer.ejs') %>
 </body>
 
 </html>

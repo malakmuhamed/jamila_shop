@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/nav.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 <nav class="navbar">
     <!-- 1st container -->
     <div class="nav-div">
@@ -11,10 +11,12 @@
             <div class="search">
                 <input id="searchtext" type="text" name="searchtext" class="search-box"
                     placeholder="search for a product">
-                <button type="submit" class="search-btn" id="search" onclick="search()"> searchh</button>
+                <button type="submit" class="search-btn" id="search" onclick="search()"> search</button>
             </div>
-            <a href="#"><img
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlhJREFUSEvdVr1uE0EYnG/BogLME+CUVDEFOUsUODwBPAGhSURFKhRsI4zwmYgKKpQ0hCeAJyChiHSbylSUOE9AgCoyvkG7/mF9vvPdESxLbHU6f56Z79uZ3RMsaMmCePH/EjdQqfYhNJMleLyNoGue59ZxDTfKImofQHG0nSLyrBUGzbkSN2TlgJBbrofmTmzGS6HpFhS8VqF8MM+/gO5cR11XlT2Q9wxZgadXmuicRNMzscdmX4jzl88aMSXhgcUQeeeHwVoc3pi4gZU7FHl/VtKJPaWsthAMRETWmLiGypoI3/5D4s8+dTkJb0zcRLnYkwvfBlbnJ1BZ2+daClWST62pKPfbCPZSiU1BFlPMEuJE6HuBp6U4U40z7QK5+5ymOCpgC5XSOeHXUYTaod6cJXLq5KqLZ460qwA6PvX1rKOuKe+VEA9NfZ+yNMprplGborwA5j9Df5hui8YfLR5V0wRPdZx3ZFaskwgh77ZwZE+qXKO2JhOvA2AZQNenXkoDceqPfepSWv0gOTFrsgNs9qGMkNil0C9BxMbGvQTSyGOJ3UynAbi/J53LcRiJ97Frsizk5hZKi5CLM/NDwFxvWUhNTdKZnDlObmEd3jrAYg+FNy9x+DMK8gg3LxbQewDIiQ+9m1Vkormss5X3AsTWEGzfp74dBa6L9xHAqn0v2PZD/TgreeKoXVACbFOrKGhNvFD+JCNWXO5R2zELdobd7Pqh3pjqWHk7INbte2Ijz7jTzHVNgEvPEegk5U9Q8Qj8aCH4knXMM/c4D8jf1M7tuzpNzMKIfwMrl+cfOjE8bAAAAABJRU5ErkJggg==" /></a>
+            <a href="/cart"><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlhJREFUSEvdVr1uE0EYnG/BogLME+CUVDEFOUsUODwBPAGhSURFKhRsI4zwmYgKKpQ0hCeAJyChiHSbylSUOE9AgCoyvkG7/mF9vvPdESxLbHU6f56Z79uZ3RMsaMmCePH/EjdQqfYhNJMleLyNoGue59ZxDTfKImofQHG0nSLyrBUGzbkSN2TlgJBbrofmTmzGS6HpFhS8VqF8MM+/gO5cR11XlT2Q9wxZgadXmuicRNMzscdmX4jzl88aMSXhgcUQeeeHwVoc3pi4gZU7FHl/VtKJPaWsthAMRETWmLiGypoI3/5D4s8+dTkJb0zcRLnYkwvfBlbnJ1BZ2+daClWST62pKPfbCPZSiU1BFlPMEuJE6HuBp6U4U40z7QK5+5ymOCpgC5XSOeHXUYTaod6cJXLq5KqLZ460qwA6PvX1rKOuKe+VEA9NfZ+yNMprplGborwA5j9Df5hui8YfLR5V0wRPdZx3ZFaskwgh77ZwZE+qXKO2JhOvA2AZQNenXkoDceqPfepSWv0gOTFrsgNs9qGMkNil0C9BxMbGvQTSyGOJ3UynAbi/J53LcRiJ97Frsizk5hZKi5CLM/NDwFxvWUhNTdKZnDlObmEd3jrAYg+FNy9x+DMK8gg3LxbQewDIiQ+9m1Vkormss5X3AsTWEGzfp74dBa6L9xHAqn0v2PZD/TgreeKoXVACbFOrKGhNvFD+JCNWXO5R2zELdobd7Pqh3pjqWHk7INbte2Ijz7jTzHVNgEvPEegk5U9Q8Qj8aCH4knXMM/c4D8jf1M7tuzpNzMKIfwMrl+cfOjE8bAAAAABJRU5ErkJggg==" />
+                <div id="bagnum"></div>
+            </a>
             <div id="signin">
                 <% if (fullname.fullname) { %>
                     <a style="float: left;" href="" onclick="signout()"><img
